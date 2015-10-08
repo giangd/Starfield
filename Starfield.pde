@@ -1,4 +1,4 @@
-Particle[] particles = new Particle[375];
+Particle[] particles = new Particle[370]; //dotn change this size and not update for loop that initializes particles
 void setup() {
 	size(500,500);
 	noStroke();
@@ -7,9 +7,10 @@ void setup() {
 			particles[i] = new NormalParticle(i,5);
         } else if (i <= 370) {
         	particles[i] = new OddballParticle(i,5);
-        } else {
-        	particles[i] = new JumboParticle(i,10);
         }
+        // else {
+        // 	particles[i] = new JumboParticle(i,10);
+        // }
 	}
 }
 
@@ -107,14 +108,14 @@ class OddballParticle implements Particle {
 	}
 }
 
-class JumboParticle extends NormalParticle {
-	JumboParticle (double angle, double mySize) {
-		x = width/2;
-		y = height/2;
-		speed = 5;
-		this.angle = angle;
-		myColor = (int)(Math.random()*256);
-		this.mySize = mySize;
-	}
-}
+// class JumboParticle extends NormalParticle {
+// 	JumboParticle (double angle, double mySize) {
+// 		x = width/2;
+// 		y = height/2;
+// 		speed = 5;
+// 		this.angle = angle;
+// 		myColor = (int)(Math.random()*256);
+// 		this.mySize = mySize;
+// 	}
+// }
 
