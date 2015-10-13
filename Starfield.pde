@@ -1,14 +1,17 @@
-Particle[] particles = new Particle[380]; //dotn change this size and not update for loop that initializes particles
+Particle[] particles = new Particle[383]; //dotn change this size and not update for loop that initializes particles
 void setup() {
 	size(500,500);
 	noStroke();
+	double angle = 0;
 	for (int i = 0; i < particles.length; i ++) {
-		double angle = 0;
+		
 		if (i <= 360) {
 			particles[i] = new NormalParticle(i,5);
         }
-        else  {
+        else  if (i > 360 && i < 381) {
         	particles[i] = new OddballParticle(angle,5);
+        } else {
+        	particles[i] = new JumboParticle(i*(Math.random()*361),20);
         }
         angle ++;
         // } else if (i == 371) {
@@ -43,7 +46,7 @@ class NormalParticle implements Particle {
 		y = height/2;
 		speed = 5;
 		this.angle = angle;
-		//myColor = (int)(Math.random()*256);
+		myColor = (int)(Math.random()*256);
 		this.mySize = mySize;
 	}
 
@@ -98,11 +101,11 @@ class OddballParticle implements Particle {
 			} else {
 				speed -= 1.5;
 			}
-			if (angle >= 360) {
-				angle = 0;
-			} else {
-				angle += 0.5;
-			}
+			// if (angle > 361) {
+			// 	angle = 0;
+			// } else {
+			// 	angle += 0.5;
+			// }
 		}
 	}
 
@@ -112,11 +115,12 @@ class OddballParticle implements Particle {
 	}
 }
 
-class JumboParticle implements Particle {
-	double x,y,speed,angle,mySize;
-	color myColor;
+class JumboParticle extends NormalParticle {
+	// double x,y,speed,angle,mySize;
+	// color myColor;
 
 	JumboParticle (double angle, double mySize) {
+		super(angle,mySize);
 		x = width/2;
 		y = height/2;
 		speed = 5;
@@ -131,22 +135,20 @@ class JumboParticle implements Particle {
 		if (x > width || x < 0 || y > height || y < 0) {
 			x = width/2;
 			y = height/2;
+			myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
 			if (speed < 3) { 
 				speed = 5;
 			} else {
 				speed -= 1.5;
 			}
-			if (angle == 360) {
-				angle = 0;
-			} else {
-				angle += 1;
-			}
+			// if (angle > 361) {
+			// 	angle = 0;
+			// } else {
+			// 	angle += 0.5;
+			// }
+			angle = Math.random()*361;
 		}
 	}
 
-	public void show() {
-		fill(myColor);
-		ellipse((float)x,(float)y,(float)mySize,(float)mySize);
-	}
 }
 
