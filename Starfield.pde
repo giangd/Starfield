@@ -37,7 +37,7 @@ interface Particle {
 }
 
 class NormalParticle implements Particle {
-	double x,y,speed,angle,mySize;
+	double x,y,speed,angle,mySize,angleInc;
 	color myColor;
 
 	NormalParticle(double angle, double mySize) {
@@ -67,6 +67,13 @@ class NormalParticle implements Particle {
 				angle += 0.141;
 			}
 		}
+
+		angleInc += 0.00025;
+		angle += angleInc;
+
+		if (angleInc > 0.075) {
+			angleInc = 0.00025;
+		}
 	}
 
 	public void show() {
@@ -76,7 +83,7 @@ class NormalParticle implements Particle {
 }
 
 class OddballParticle implements Particle {
-	double x,y,speed,angle,mySize;
+	double x,y,speed,angle,mySize,angleInc;
 	color myColor;
 
 	OddballParticle(double angle, double mySize) {
@@ -106,6 +113,12 @@ class OddballParticle implements Particle {
 			// } else {
 			// 	angle += 0.5;
 			// }
+		}
+		angleInc += 0.00025;
+		angle += angleInc;
+
+		if (angleInc > 0.075) {
+			angleInc = 0.00025;
 		}
 	}
 
