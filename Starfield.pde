@@ -68,12 +68,13 @@ class NormalParticle implements Particle {
 			}
 		}
 
-		angleInc += 0.00025;
+		// angleInc += 0.00025;
+		angleInc = 0.032;
 		angle += angleInc;
 
-		if (angleInc > 0.075) {
-			angleInc = 0.00025;
-		}
+		// if (angleInc > 0.075) {
+		// 	angleInc = 0.00025;
+		// }
 	}
 
 	public void show() {
